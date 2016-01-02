@@ -1,6 +1,7 @@
 require 'data_mapper'
 require 'sinatra'
 require_relative ("./data_base_mng.rb")
+#require_relative ("./calculator_logic.rb")
 require 'sinatra/flash'
 
 enable :sessions
@@ -10,7 +11,7 @@ SITE_DESCRIPTION = "'cause you are too dumb to remember"
 
 get '/' do
     @notes = Note.all :order => :id.desc
-    @grades = Grade.all :order => :id.desc
+    #@grades = Grade.all :order => :id.desc
     @title = "All Notes & Grades"
     erb :home
 end
@@ -30,13 +31,14 @@ post '/' do
         flash[:error] = 'Failed to save note.'
         redirect '/'
     end
-
+=begin
     g = Grade.new
     g.name = params[:subject_name]
-    g.current_grade =
-    g.neede_grade =
+    g.current_grade = Calculator.r
+    g.needed_grade = Calculator.needed
     g.created_at = Time.now
     g.updated_at = Time.now
+=end
 end
 
 
@@ -96,7 +98,4 @@ helpers do
     include Rack::Utils
     alias_method :h, :escape_html
 end
-
-
-
 

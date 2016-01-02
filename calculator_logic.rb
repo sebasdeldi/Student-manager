@@ -1,5 +1,6 @@
 class Calculator
 
+
   def initialize (n,g)  
     @grades = n.split ","
     @perc = g.split ","
@@ -23,6 +24,10 @@ class Calculator
 
   def r
     @r
+  end
+
+  def needed
+    @needed
   end
 
   def convertor
@@ -49,19 +54,19 @@ class Calculator
     if @perc.inject{|sum,x| sum + x } == 100
       
       if @r > 5 || @r < 0
-        puts "Tu input es incorrecto"
+        puts "You submmited a wrong input"
       else
-        puts "Tu nota final es #{r}"
+        puts "Your final grade is #{r}"
       end
     else
       acum = @r
       perc_rest = 100 - (@perc.inject{|sum,x| sum + x } * 100)
 
       if @r > 5 || @r < 0
-        puts "Tu input es incorrecto"
+        puts "You submmited a wrong input"
       else
         @needed = ((3-acum) / (perc_rest / 100) )
-        puts "Necesitas #{@needed} en el #{perc_rest} % restante"
+        puts "You need #{@needed} in the next #{perc_rest} % "
       end
     end
     
