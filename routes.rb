@@ -1,7 +1,7 @@
 require 'data_mapper'
 require 'sinatra'
 require_relative ("./data_base_mng.rb")
-#require_relative ("./calculator_logic.rb")
+require_relative ("calculator_logic.rb")
 require 'sinatra/flash'
 
 enable :sessions
@@ -11,7 +11,7 @@ SITE_DESCRIPTION = "'cause you are too dumb to remember"
 
 get '/' do
     @notes = Note.all :order => :id.desc
-    #@grades = Grade.all :order => :id.desc
+    @grades = Grade.all :order => :id.desc
     @title = "All Notes & Grades"
     erb :home
 end
@@ -25,20 +25,31 @@ post '/' do
     n.updated_at = Time.now
 
     if n.save
-        flash[:notice] = 'Note created successfully.'
+        #flash[:notice] = 'Note created successfully.'
         redirect '/'
     else
         flash[:error] = 'Failed to save note.'
         redirect '/'
     end
-=begin
+
+    c = Calculator.new(params[:grades], params[:percentage])
+
     g = Grade.new
     g.name = params[:subject_name]
-    g.current_grade = Calculator.r
-    g.needed_grade = Calculator.needed
+    g.current_grade = c.r
+    g.needed_grade = c.needed
     g.created_at = Time.now
     g.updated_at = Time.now
-=end
+
+
+    if g.save
+        #flash[:notice] = 'Note created successfully.'
+        redirect '/'
+    else
+        flash[:error] = 'Failed to save subject.'
+        redirect '/'
+    end
+
 end
 
 
@@ -54,7 +65,7 @@ put '/:id' do
   n.content = params[:content]
   n.updated_at = Time.now
   if n.save
-      flash[:notice] = 'Note updated successfully.'
+      #flash[:notice] = 'Note updated successfully.'
       redirect '/'
   else
       flash[:error] = 'Failed to update note.'
@@ -73,7 +84,7 @@ delete '/:id' do
 
 
 	if n.destroy
-	    flash[:notice] = 'Note deleted successfully.'
+	    #flash[:notice] = 'Note deleted successfully.'
 	    redirect '/'
 	else
 	    flash[:error] = 'Failed to delete note.'
@@ -86,7 +97,7 @@ get '/:id/complete' do
   n.complete = n.complete ? 0 : 1
   n.updated_at = Time.now
   if n.save
-      flash[:notice] = 'Note clompleted successfully.'
+      #flash[:notice] = 'Note clompleted successfully.'
       redirect '/'
   else
       flash[:error] = 'Failed to complete note.'

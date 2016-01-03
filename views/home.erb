@@ -1,5 +1,7 @@
 <div class ="row">
   
+  <!SECCIÓN ENCARGADA DE LAS NOTAS>
+
   <div class ="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     
     <section id = "add">
@@ -39,6 +41,7 @@
 
   </div>
 
+  <!SECCIÓN ENCARGADA DE LA CALCULADORA>
 
   <div class ="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     
@@ -60,11 +63,11 @@
             <textarea class="form-control" name="percentage" id="text_area" placeholder="Percentages"></textarea>
           </div>
 
-          <div class="col-sm-9">
+          <div class="col-sm-9 col-xs-9">
             <button type="submit" class="btn btn-lg">Calculate!</button> 
           </div>
 
-          <div class="col-sm-3">
+          <div class="col-sm-3 col-xs-3">
             <button class="btn btn-lg" data-toggle="tooltip" title="INPUT YOUR GRADES SEPARATED BY COMMAS (','), DO THE SAME FOR THE PERCERNTAGE OF EACH GRADE, SO THE PERCENTAGE THAT YOU GIVE FIRST, WILL BE THE CORRESPONDING PERCENTAGE OF YOUR FIRST GRADE. ">?</button> 
           </div>
 
@@ -74,6 +77,27 @@
       </form>
       
     </section>
+
+
+    <% @grades.each do |grade| %>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>
+              <div class="each-post" >
+                <p><%=h grade.name %></p> 
+                <p></p>
+                <p>Current avg grade = <%= grade.current_grade %></p>
+                <p>Needed to approve = <%= grade.needed_grade %></p>
+                <p id="creat">Created: <%= grade.created_at %></p>
+              </div>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+
+    <% end %>
 
   </div>
 </div>
