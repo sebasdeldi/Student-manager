@@ -26,11 +26,11 @@ post '/' do
 
     if n.save
         #flash[:notice] = 'Note created successfully.'
-        redirect '/'
     else
         flash[:error] = 'Failed to save note.'
-        redirect '/'
     end
+
+    redirect '/'
 
     c = Calculator.new(params[:grades], params[:percentage])
 
@@ -44,11 +44,11 @@ post '/' do
 
     if g.save
         #flash[:notice] = 'Note created successfully.'
-        redirect '/'
     else
         flash[:error] = 'Failed to save subject.'
-        redirect '/'
     end
+
+    redirect '/'
 
 end
 
@@ -66,11 +66,10 @@ put '/:id' do
   n.updated_at = Time.now
   if n.save
       #flash[:notice] = 'Note updated successfully.'
-      redirect '/'
   else
       flash[:error] = 'Failed to update note.'
-      redirect '/'
   end
+  redirect '/'
 end
 
 get '/:id/delete' do
@@ -85,11 +84,10 @@ delete '/:id' do
 
 	if n.destroy
 	    #flash[:notice] = 'Note deleted successfully.'
-	    redirect '/'
 	else
 	    flash[:error] = 'Failed to delete note.'
-	    redirect '/'
 	end
+  redirect '/'
 end
 
 get '/:id/complete' do
@@ -98,11 +96,10 @@ get '/:id/complete' do
   n.updated_at = Time.now
   if n.save
       #flash[:notice] = 'Note clompleted successfully.'
-      redirect '/'
   else
       flash[:error] = 'Failed to complete note.'
-      redirect '/'
   end
+  redirect '/'
 end
 
 helpers do
