@@ -30,8 +30,6 @@ post '/' do
         flash[:error] = 'Failed to save note.'
     end
 
-    redirect '/'
-
     c = Calculator.new(params[:grades], params[:percentage])
 
     g = Grade.new
