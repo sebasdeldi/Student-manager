@@ -74,4 +74,8 @@ class Calculator
     
   end
 end
-
+=begin
+c = Calculator.new("4,4,4","25,25,25")
+puts "#{c.r}"
+puts "#{c.needed}"
+=end

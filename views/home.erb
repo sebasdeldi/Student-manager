@@ -6,7 +6,7 @@
     
     <section id = "add">
       <h1>Take notes!</h1>
-      <form action="/" method="post">
+      <form action="/notes" method="post">
 
         
         <textarea class = "form-control" name="content" id="text_area" placeholder="Write your note here!"></textarea>
@@ -48,7 +48,7 @@
     <section id="calculator">
       <h1>Wanna pass?</h1>
 
-      <form action="/" method="post">
+      <form action="/grades" method="post">
         <div class="row">
 
           <div class="col-sm-4">
@@ -88,9 +88,9 @@
               <div class="each-post" >
                 <p><%=h grade.name %></p> 
                 <p></p>
-                <p>Current avg grade = <%= grade.current_grade %></p>
-                <p>Needed to approve = <%= grade.needed_grade %></p>
-                <p id="creat">Created: <%= grade.created_at %></p>
+                <p>Current avg grade = <%=h grade.current_grade %></p>
+                <p>Needed to approve = <%=h grade.needed_grade %></p>
+                <p id="creat">Created: <%=h grade.created_at %></p>
               </div>
             </th>
           </tr>

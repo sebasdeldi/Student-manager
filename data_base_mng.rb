@@ -15,8 +15,8 @@ class Grade
 	include DataMapper::Resource
 	property :id, Serial
 	property :name, Text
-	property :current_grade, Integer
-	property :needed_grade, Integer
+	property :current_grade, Float
+	property :needed_grade, Float
 	property :created_at, DateTime
 	property :updated_at, DateTime
 end

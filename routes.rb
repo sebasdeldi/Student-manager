@@ -17,7 +17,7 @@ get '/' do
 end
 
 
-post '/' do
+post '/notes' do
 
     n = Note.new
     n.content = params[:content]
@@ -26,11 +26,15 @@ post '/' do
 
     if n.save
         #flash[:notice] = 'Note created successfully.'
+        redirect '/'
     else
         flash[:error] = 'Failed to save note.'
+        redirect '/'
     end
+end
 
-    c = Calculator.new(params[:grades], params[:percentage])
+post '/grades' do
+  c = Calculator.new(params[:grades].to_s, params[:percentage].to_s)
 
     g = Grade.new
     g.name = params[:subject_name]
@@ -42,12 +46,11 @@ post '/' do
 
     if g.save
         #flash[:notice] = 'Note created successfully.'
+        redirect '/'
     else
         flash[:error] = 'Failed to save subject.'
+        redirect '/'
     end
-
-    redirect '/'
-
 end
 
 
