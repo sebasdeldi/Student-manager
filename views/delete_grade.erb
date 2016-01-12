@@ -1,0 +1,30 @@
+
+
+
+	<% if @grade %>
+
+	  <form action="/grades/<%= @grade.id %>" method="post" id="edit">
+
+	  	<h2 id="slogan">Are you sure you want to delete the following grade: <em>"<%= h @grade.name %>"</em>?</h2>
+
+		 <input type="hidden" name="_method" value="delete">
+
+	    <div  id="btns" class="col-sm-6">
+	    	<button type="submit" class="btn btn-lg btn-danger" id="b1">Yes, Delete It!</button>
+	    	
+	    </div>
+
+	    <div id="btns" class="col-sm-6">
+	    	<a href="/"><button type="button" class="btn btn-lg btn-success" id="b1">Cancel</button></a>
+	    </div>
+
+	 </form>
+
+
+	<% else %>
+	  <p>Page not found.</p>
+	<% end %>
+
+
+
+

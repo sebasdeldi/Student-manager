@@ -17,6 +17,7 @@ class Grade
 	property :name, Text
 	property :current_grade, Float
 	property :needed_grade, Float
+	property :missing_perc, Float
 	property :created_at, DateTime
 	property :updated_at, DateTime
 end

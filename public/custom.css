@@ -146,6 +146,25 @@ footer{
 	margin-bottom: 20px;
 }
 
+#g-name{
+	color: #b5b5b7;
+}
+
+#possible{
+	color: #f2b632;
+}
+#lost{
+	color: red;
+}
+#won {
+	color: green;
+}
+
+#tb2 span{
+
+	padding-left: 50px;
+}
+
 
 
 

@@ -40,6 +40,7 @@ post '/grades' do
     g.name = params[:subject_name]
     g.current_grade = c.r
     g.needed_grade = c.needed
+    g.missing_perc = c.perc_rest
     g.created_at = Time.now
     g.updated_at = Time.now
 
@@ -88,6 +89,23 @@ delete '/:id' do
 	else
 	    flash[:error] = 'Failed to delete note.'
 	end
+  redirect '/'
+end
+
+get '/grades/:id/delete' do
+  @grade = Grade.get params[:id]
+  @title = "Confirm deletion of grade #{params[:id]}"
+  erb :delete_grade
+end
+
+delete '/grades/:id' do
+  g = Grade.get params[:id]
+
+  if g.destroy
+      #flash[:notice] = 'Note deleted successfully.'
+  else
+      flash[:error] = 'Failed to delete grade.'
+  end
   redirect '/'
 end
 

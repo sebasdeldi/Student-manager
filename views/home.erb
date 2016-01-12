@@ -16,10 +16,9 @@
          
       </form>
     </section>
-
     <% @notes.each do |note| %>
 
-      <table class="table">
+      <table class="table" id="tb1">
         <tbody>
           <tr>
             <th>
@@ -45,7 +44,7 @@
 
   <div class ="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     
-    <section id="calculator">
+    <section id="add">
       <h1>Wanna pass?</h1>
 
       <form action="/grades" method="post">
@@ -73,7 +72,6 @@
 
         </div>
 
-        </div>
       </form>
       
     </section>
@@ -81,15 +79,28 @@
 
     <% @grades.each do |grade| %>
 
-      <table class="table">
+      <table class="table" id="tb2">
         <tbody>
           <tr>
             <th>
               <div class="each-post" >
-                <p><%=h grade.name %></p> 
-                <p></p>
-                <p>Current avg grade = <%=h grade.current_grade %></p>
-                <p>Needed to approve = <%=h grade.needed_grade %></p>
+                <p id="g-name"><%=h grade.name %> </p>
+
+
+                <p <%=if grade.needed_grade > 5
+                  'id="lost"'
+                elsif grade.needed_grade <= 0
+                  'id="won"'
+                else
+                  'id="possible"'
+                end %>>
+
+                  Avg grade: <%=h grade.current_grade.round(2) %> / Need <%=h grade.needed_grade.round(2) %> in the next <%=h grade.missing_perc.round(2) %> % 
+                  <a href="/grades/<%= grade.id %>/delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </p>
+
+
+
                 <p id="creat">Created: <%=h grade.created_at %></p>
               </div>
             </th>

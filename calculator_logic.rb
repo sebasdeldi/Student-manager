@@ -30,6 +30,7 @@ class Calculator
     @needed
   end
 
+
   def convertor
     @perc = @perc.collect { |n| n.to_f }
     @perc = @perc.collect { |n| n / 100 }
@@ -42,6 +43,10 @@ class Calculator
 
 
     @r = @op.inject{|sum,x| sum + x }
+  end
+
+  def perc_rest
+    perc_rest = 100 - (@perc.inject{|sum,x| sum + x } * 100)
   end
 
   def printer
@@ -74,8 +79,9 @@ class Calculator
     
   end
 end
-=begin
+begin
 c = Calculator.new("4,4,4","25,25,25")
 puts "#{c.r}"
 puts "#{c.needed}"
-=end
+puts "#{c.perc_rest}"
+end
